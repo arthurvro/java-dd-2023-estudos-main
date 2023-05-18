@@ -8,10 +8,17 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class TelaCadastroEndereco {
 
 	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -45,8 +52,14 @@ public class TelaCadastroEndereco {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,},
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),},
 			new RowSpec[] {
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
@@ -60,20 +73,47 @@ public class TelaCadastroEndereco {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		frame.getContentPane().add(lblNewLabel, "2, 4");
+		JLabel lblCep = new JLabel("CEP");
+		frame.getContentPane().add(lblCep, "2, 4");
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		frame.getContentPane().add(lblNewLabel_1, "2, 6");
+		textField = new JTextField();
+		frame.getContentPane().add(textField, "6, 4, fill, default");
+		textField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		frame.getContentPane().add(lblNewLabel_2, "2, 8");
+		JLabel lblRua = new JLabel("RUA");
+		frame.getContentPane().add(lblRua, "2, 6");
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		frame.getContentPane().add(lblNewLabel_3, "2, 10");
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		frame.getContentPane().add(textField_1, "6, 6, fill, default");
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		frame.getContentPane().add(lblNewLabel_4, "2, 12");
+		JLabel lblNumero = new JLabel("NUMERO");
+		frame.getContentPane().add(lblNumero, "2, 8");
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		frame.getContentPane().add(textField_2, "6, 8, fill, default");
+		
+		JLabel lblBairro = new JLabel("BAIRRO");
+		frame.getContentPane().add(lblBairro, "2, 10");
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		frame.getContentPane().add(textField_3, "6, 10, fill, default");
+		
+		JLabel lblCidade = new JLabel("CIDADE");
+		frame.getContentPane().add(lblCidade, "2, 12");
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		frame.getContentPane().add(textField_4, "6, 12, fill, default");
+		
+		JLabel lblEstado = new JLabel("ESTADO");
+		frame.getContentPane().add(lblEstado, "2, 14");
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		frame.getContentPane().add(textField_5, "6, 14, fill, default");
 	}
 
 }
