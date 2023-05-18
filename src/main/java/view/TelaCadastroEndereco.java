@@ -20,7 +20,7 @@ public class TelaCadastroEndereco {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JButton btnSalvar;
+	private JButton btnSave;
 
 	/**
 	 * Launch the application.
@@ -119,8 +119,8 @@ public class TelaCadastroEndereco {
 		textField_5.setColumns(10);
 		frame.getContentPane().add(textField_5, "5, 14, fill, default");
 		
-		btnSalvar = new JButton("Salvar");
-		frame.getContentPane().add(btnSalvar, "2, 16, 4, 1");
+		btnSave = new JButton("Salvar");
+		frame.getContentPane().add(btnSave, "2, 16, 4, 1");
 	}
 
 }
