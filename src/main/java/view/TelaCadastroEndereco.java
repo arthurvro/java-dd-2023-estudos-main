@@ -14,13 +14,15 @@ import javax.swing.JButton;
 public class TelaCadastroEndereco {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField txtCep;
+	private JTextField txtRua;
+	private JTextField txtNumero;
+	private JTextField txtBairro;
+	private JTextField txtCidade;
+	private JTextField txtEstado;
 	private JButton btnSave;
+	
+	//TESTE DE ATUALIZACAO GIT
 
 	/**
 	 * Launch the application.
@@ -80,44 +82,44 @@ public class TelaCadastroEndereco {
 		JLabel lblCep = new JLabel("CEP");
 		frame.getContentPane().add(lblCep, "2, 4");
 		
-		textField = new JTextField();
-		frame.getContentPane().add(textField, "5, 4, fill, default");
-		textField.setColumns(10);
+		txtCep = new JTextField();
+		frame.getContentPane().add(txtCep, "5, 4, fill, default");
+		txtCep.setColumns(10);
 		
 		JLabel lblRua = new JLabel("RUA");
 		frame.getContentPane().add(lblRua, "2, 6");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		frame.getContentPane().add(textField_1, "5, 6, fill, default");
+		txtRua = new JTextField();
+		txtRua.setColumns(10);
+		frame.getContentPane().add(txtRua, "5, 6, fill, default");
 		
 		JLabel lblNumero = new JLabel("NUMERO");
 		frame.getContentPane().add(lblNumero, "2, 8");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		frame.getContentPane().add(textField_2, "5, 8, fill, default");
+		txtNumero = new JTextField();
+		txtNumero.setColumns(10);
+		frame.getContentPane().add(txtNumero, "5, 8, fill, default");
 		
 		JLabel lblBairro = new JLabel("BAIRRO");
 		frame.getContentPane().add(lblBairro, "2, 10");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		frame.getContentPane().add(textField_3, "5, 10, fill, default");
+		txtBairro = new JTextField();
+		txtBairro.setColumns(10);
+		frame.getContentPane().add(txtBairro, "5, 10, fill, default");
 		
 		JLabel lblCidade = new JLabel("CIDADE");
 		frame.getContentPane().add(lblCidade, "2, 12");
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		frame.getContentPane().add(textField_4, "5, 12, fill, default");
+		txtCidade = new JTextField();
+		txtCidade.setColumns(10);
+		frame.getContentPane().add(txtCidade, "5, 12, fill, default");
 		
 		JLabel lblEstado = new JLabel("ESTADO");
 		frame.getContentPane().add(lblEstado, "2, 14");
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		frame.getContentPane().add(textField_5, "5, 14, fill, default");
+		txtEstado = new JTextField();
+		txtEstado.setColumns(10);
+		frame.getContentPane().add(txtEstado, "5, 14, fill, default");
 		
 		btnSave = new JButton("Salvar");
 		frame.getContentPane().add(btnSave, "2, 16, 4, 1");
