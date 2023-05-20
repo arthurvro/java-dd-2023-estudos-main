@@ -1,27 +1,47 @@
 package view;
 
 import java.awt.EventQueue;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import model.exception.CampoInvalidoException;
+import model.vo.telefonia.Endereco;
+import controller.EnderecoController;
+
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaCadastroEndereco {
 
 	private JFrame frame;
-	private JTextField txtCep;
 	private JTextField txtRua;
 	private JTextField txtNumero;
 	private JTextField txtBairro;
-	private JTextField txtCidade;
+	private JTextField txtMunicipio;
 	private JTextField txtEstado;
+	private JLabel lblCep;
+	private JLabel lblRua;
+	private JLabel lblNumero;
+	private JLabel lblBairro;
+	private JLabel lblMunicipio;
+	private JLabel lblEstado;
 	private JButton btnSalvar;
+	
+	private JFormattedTextField txtCEP;
+	private MaskFormatter mascaraCep;
 	
 	//TESTE DE ATUALIZACAO GIT
 
@@ -84,15 +104,21 @@ public class TelaCadastroEndereco {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
-		JLabel lblCep = new JLabel("CEP");
+		lblCep = new JLabel("CEP");
 		lblCep.setForeground(new Color(255, 255, 255));
 		frame.getContentPane().add(lblCep, "2, 4");
 		
-		txtCep = new JTextField();
-		frame.getContentPane().add(txtCep, "5, 4, fill, default");
-		txtCep.setColumns(10);
+		try {
+			mascaraCep = new MaskFormatter("#####-###");
+			mascaraCep.setValueContainsLiteralCharacters(false);
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "Erro ao criar máscara de Cep");
+		}
 		
-		JLabel lblRua = new JLabel("RUA");
+		txtCEP = new JFormattedTextField(mascaraCep);
+		frame.getContentPane().add(txtCEP, "5, 4, fill, default");
+		
+		lblRua = new JLabel("RUA");
 		lblRua.setForeground(new Color(255, 255, 255));
 		frame.getContentPane().add(lblRua, "2, 6");
 		
@@ -100,7 +126,7 @@ public class TelaCadastroEndereco {
 		txtRua.setColumns(10);
 		frame.getContentPane().add(txtRua, "5, 6, fill, default");
 		
-		JLabel lblNumero = new JLabel("NUMERO");
+		lblNumero = new JLabel("NUMERO");
 		lblNumero.setForeground(new Color(255, 255, 255));
 		frame.getContentPane().add(lblNumero, "2, 8");
 		
@@ -108,7 +134,7 @@ public class TelaCadastroEndereco {
 		txtNumero.setColumns(10);
 		frame.getContentPane().add(txtNumero, "5, 8, fill, default");
 		
-		JLabel lblBairro = new JLabel("BAIRRO");
+		lblBairro = new JLabel("BAIRRO");
 		lblBairro.setForeground(new Color(255, 255, 255));
 		frame.getContentPane().add(lblBairro, "2, 10");
 		
@@ -116,15 +142,15 @@ public class TelaCadastroEndereco {
 		txtBairro.setColumns(10);
 		frame.getContentPane().add(txtBairro, "5, 10, fill, default");
 		
-		JLabel lblCidade = new JLabel("CIDADE");
-		lblCidade.setForeground(new Color(255, 255, 255));
-		frame.getContentPane().add(lblCidade, "2, 12");
+		lblMunicipio = new JLabel("CIDADE");
+		lblMunicipio.setForeground(new Color(255, 255, 255));
+		frame.getContentPane().add(lblMunicipio, "2, 12");
 		
-		txtCidade = new JTextField();
-		txtCidade.setColumns(10);
-		frame.getContentPane().add(txtCidade, "5, 12, fill, default");
+		txtMunicipio = new JTextField();
+		txtMunicipio.setColumns(10);
+		frame.getContentPane().add(txtMunicipio, "5, 12, fill, default");
 		
-		JLabel lblEstado = new JLabel("ESTADO");
+		lblEstado = new JLabel("ESTADO");
 		lblEstado.setForeground(new Color(255, 255, 255));
 		lblEstado.setBackground(new Color(255, 255, 255));
 		frame.getContentPane().add(lblEstado, "2, 14");
@@ -134,6 +160,33 @@ public class TelaCadastroEndereco {
 		frame.getContentPane().add(txtEstado, "5, 14, fill, default");
 		
 		btnSalvar = new JButton("SALVAR");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Endereco novoEndereco = new Endereco();
+				novoEndereco.setBairro(txtBairro.getText());
+				
+				String cepInformado = "";
+				try {
+					cepInformado = (String) mascaraCep.stringToValue(txtCEP.getText());
+				} catch (ParseException e1) {
+					//silent
+				}
+				novoEndereco.setCep(cepInformado);
+				novoEndereco.setNumero(txtNumero.getText());
+				novoEndereco.setRua(txtRua.getText());
+				novoEndereco.setCidade(txtMunicipio.getText());
+				novoEndereco.setEstado(txtEstado.getText());
+				
+				EnderecoController controller = new EnderecoController();
+				try {
+					controller.inserir(novoEndereco);
+					JOptionPane.showMessageDialog(null, "Endereço cadastrado!");
+				} catch (CampoInvalidoException e2) {
+					JOptionPane.showMessageDialog(null, "Informe os seguintes campos\n " + e2.getMessage());
+				}
+			}
+		});
+		
 		btnSalvar.setForeground(new Color(255, 255, 255));
 		btnSalvar.setBackground(new Color(89, 109, 56));
 		frame.getContentPane().add(btnSalvar, "2, 18, 4, 1, fill, bottom");
