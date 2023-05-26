@@ -161,7 +161,7 @@ public class TelaCadastroEndereco {
 		
 		btnSalvar = new JButton("SALVAR");
 		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { //evento ao clicar o botao salvar, pode ser qualquer nome
 				Endereco novoEndereco = new Endereco();
 				novoEndereco.setBairro(txtBairro.getText());
 				
